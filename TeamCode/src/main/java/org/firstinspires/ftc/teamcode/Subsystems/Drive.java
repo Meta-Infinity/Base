@@ -5,7 +5,6 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import androidx.annotation.NonNull;
 
 //import com.acmerobotics.roadrunner.ftc.SparkFunOTOSCorrected;
-import com.pedropathing.localization.GoBildaPinpointDriver;
 import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -34,7 +33,6 @@ import kotlin.annotation.MustBeDocumented;
 public class Drive implements Subsystem {
     public static final Drive INSTANCE = new Drive();
     private static DcMotorEx leftFront, leftBack, rightFront, rightBack;
-    static GoBildaPinpointDriver odo;
     //    private static SparkFunOTOSCorrected otos;
     private static SparkFunOTOS.Pose2D pose;
     private static double turnNerf = .5;
@@ -67,11 +65,11 @@ public class Drive implements Subsystem {
         leftFront = hwmap.get(DcMotorEx.class, "frontLeftMotor");
         rightBack = hwmap.get(DcMotorEx.class, "backRightMotor");
         rightFront = hwmap.get(DcMotorEx.class, "frontRightMotor");
-        odo = hwmap.get(GoBildaPinpointDriver.class,"pinpoint");
-        odo.setOffsets(-84.0, -168.0);
-        odo.setEncoderResolution(4096.0/(35.0*Math.PI));
-        odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.REVERSED, GoBildaPinpointDriver.EncoderDirection.REVERSED);
-        odo.resetPosAndIMU();
+//        odo = hwmap.get(GoBildaPinpointDriver.class,"pinpoint");
+//        odo.setOffsets(-84.0, -168.0);
+//        odo.setEncoderResolution(4096.0/(35.0*Math.PI));
+//        odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.REVERSED, GoBildaPinpointDriver.EncoderDirection.REVERSED);
+//        odo.resetPosAndIMU();
 
 //        otos = hwmap.get(SparkFunOTOSCorrected.class, "otos");
 //        System.out.println(otos.setLinearScalar(PARAMS.linearScalar));
@@ -132,7 +130,8 @@ public class Drive implements Subsystem {
     }
 
     public static double getHeading() {
-        return odo.getPosition().getHeading();
+        return 0;
+                //odo.getPosition().getHeading();
     }
 
     @NonNull
@@ -151,7 +150,7 @@ public class Drive implements Subsystem {
     private static Lambda resetIMU() {
         return new Lambda("reset imu")
                 .setExecute(() -> {
-                    odo.resetPosAndIMU();
+                    //odo.resetPosAndIMU();
                 });
     }
 
